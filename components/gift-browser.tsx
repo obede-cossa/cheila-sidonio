@@ -16,13 +16,10 @@ export function GiftBrowser({ gifts }: { gifts: Gift[] }) {
   const [message, setMessage] = useState('')
   const [isPending, startTransition] = useTransition()
 
-  // Marks a gift as reserved in the UI immediately; React reverts it if the
-  // server action fails or when fresh data arrives.
   const [optimisticGifts, markReserved] = useOptimistic(gifts, (state, id: string) =>
     state.map((gift) => (gift.id === id ? { ...gift, is_reserved: true } : gift)),
   )
 
-  // Keeps typing responsive: filtering runs on a lower-priority pass.
   const deferredQuery = useDeferredValue(query)
 
   const categories = useMemo(
@@ -42,7 +39,6 @@ export function GiftBrowser({ gifts }: { gifts: Gift[] }) {
       )
     })
 
-    // filter() already returned a new array, so sorting in place is safe.
     return matches.sort((a, b) => {
       if (sort === 'Menor preço') return (a.price ?? 0) - (b.price ?? 0)
       if (sort === 'Maior preço') return (b.price ?? 0) - (a.price ?? 0)
@@ -68,7 +64,8 @@ export function GiftBrowser({ gifts }: { gifts: Gift[] }) {
           <p className="text-sm font-medium text-primary">Escolham com calma</p>
           <h2 className="mt-2 font-serif text-4xl">Lista de presentes</h2>
           <p className="mt-3 text-muted-foreground">
-            {available} {available === 1 ? 'presente ainda disponível' : 'presentes ainda disponíveis'}
+            {available}{' '}
+            {available === 1 ? 'presente ainda disponível' : 'presentes ainda disponíveis'}
           </p>
         </div>
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -124,7 +121,8 @@ export function GiftBrowser({ gifts }: { gifts: Gift[] }) {
           Nenhum presente corresponde à pesquisa. Limpem o filtro para ver a lista completa.
         </p>
       ) : (
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        // Single-column list on phones (rows), grid of cards from sm upwards.
+        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {filtered.map((gift, index) => (
             <GiftCard
               key={gift.id}
