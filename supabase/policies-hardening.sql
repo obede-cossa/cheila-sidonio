@@ -79,7 +79,7 @@ create policy "owners can delete"
 -- (tick "Auto Confirm User"), then run this with that email.
 
 insert into public.gift_owners (user_id)
-select id from auth.users where email = 'obedecossa@outlook.com'
+select id from auth.users where email = 'noivos@example.com'
 on conflict (user_id) do nothing;
 
 -- Verify. Should return one row.

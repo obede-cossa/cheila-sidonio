@@ -4,8 +4,14 @@
 @import '@fontsource-variable/cormorant-garamond';
 
 @import 'tailwindcss';
-@import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
+
+/* Removed: @import 'tw-animate-css';
+   It came from the v0 scaffold and nothing referenced it. The only animation
+   utility in the app is `animate-pulse` (core Tailwind), and shadcn/tailwind.css
+   has no tw-animate-css dependency. If you later add a shadcn component that
+   needs `animate-in` / `fade-in` utilities, run `pnpm add tw-animate-css` and
+   put this import back on the line above. */
 
 @custom-variant dark (&:is(.dark *));
 
