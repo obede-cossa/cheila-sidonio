@@ -1,13 +1,28 @@
 'use server'
 
-import { revalidatePath, revalidateTag } from 'next/cache'
+import { revalidatePath, updateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 import { createServerSupabase } from '@/lib/supabase/server'
 import type { ActionResult } from '@/lib/types'
 
+/**
+ * Next 16 changed the cache invalidation API.
+ *
+ *   revalidateTag('gifts')              -> deprecated, TS2554 in Next 16
+ *   revalidateTag('gifts', 'max')       -> stale-while-revalidate
+ *   updateTag('gifts')                  -> expire now + refresh (read-your-writes)
+ *
+ * We want the last one. A guest who reserves a gift and reloads must see it
+ * reserved immediately, and the couple must see their edits straight away.
+ * Stale-while-revalidate would show them the old list on the next request.
+ *
+ * updateTag() is only callable from Server Actions, which is where all three
+ * mutations below live. If you ever move one of these into a Route Handler,
+ * that call has to become revalidateTag('gifts', 'max').
+ */
 function bustGifts() {
-  revalidateTag('gifts')
+  updateTag('gifts')
   revalidatePath('/')
   revalidatePath('/dashboard')
 }

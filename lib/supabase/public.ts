@@ -7,7 +7,7 @@ import { SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL } from '@/lib/env'
  *
  * Deliberately does NOT read cookies. That keeps `app/page.tsx` out of dynamic
  * rendering, so the marketing shell is prerendered and only the gift query is
- * revalidated. Mutations call revalidateTag('gifts') to bust it.
+ * revalidated. Mutations call updateTag('gifts') in app/actions.ts to bust it.
  */
 export const publicSupabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
   auth: { persistSession: false, autoRefreshToken: false },
