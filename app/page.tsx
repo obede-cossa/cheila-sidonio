@@ -99,7 +99,7 @@ export default function Page() {
             Um presente para a nossa história.
           </h1>
           <p className="mt-6 max-w-lg text-base leading-7 text-muted-foreground">
-            A vossa presença é o nosso maior presente. Se quiserem celebrar connosco de uma forma
+            A vossa presença é o nosso maior presente. Querendo celebrar connosco de uma forma
             especial, reunimos aqui algumas ideias para o nosso novo lar.
           </p>
           <a

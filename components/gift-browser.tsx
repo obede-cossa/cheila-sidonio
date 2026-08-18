@@ -61,7 +61,6 @@ export function GiftBrowser({ gifts }: { gifts: Gift[] }) {
     <section id="lista" className="mx-auto max-w-6xl px-5 py-16">
       <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <div>
-          <p className="text-sm font-medium text-primary">Escolham com calma</p>
           <h2 className="mt-2 font-serif text-4xl">Lista de presentes</h2>
           <p className="mt-3 text-muted-foreground">
             {available}{' '}
@@ -69,7 +68,7 @@ export function GiftBrowser({ gifts }: { gifts: Gift[] }) {
           </p>
         </div>
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <ShieldCheck className="h-4 w-4 text-primary" /> Reserva simples e segura
+          <ShieldCheck className="h-4 w-4 text-primary" /> 87 424 7084
         </div>
       </div>
 
