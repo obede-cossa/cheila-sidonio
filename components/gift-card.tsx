@@ -35,14 +35,14 @@ function GiftCardImpl({ gift, index, pending, onReserve }: Props) {
     // Row on phones (image left, content right), stacked card from sm upwards.
     <article className="flex flex-row overflow-hidden rounded-2xl border border-border bg-card sm:flex-col">
       <div className="relative w-28 shrink-0 self-stretch bg-secondary sm:aspect-[4/3] sm:w-full sm:self-auto">
-        <Image
+        {/* <Image
           src={image}
           alt=""
           fill
           loading={index < 3 ? 'eager' : 'lazy'}
           sizes="(max-width: 640px) 112px, (max-width: 1024px) 50vw, 33vw"
           className="object-cover"
-        />
+        /> */}
         {/* Overlay badges only make sense on the larger image. */}
         <span className="absolute top-4 left-4 hidden rounded-full bg-background/90 px-3 py-1 text-xs font-medium sm:inline">
           {gift.category}

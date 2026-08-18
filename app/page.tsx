@@ -111,7 +111,7 @@ export default function Page() {
         </div>
         <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-secondary">
           <Image
-            src="/couple-wedding.png"
+            src="/gift-placeholder.jpg"
             alt="Retrato dos noivos num jardim"
             fill
             priority
